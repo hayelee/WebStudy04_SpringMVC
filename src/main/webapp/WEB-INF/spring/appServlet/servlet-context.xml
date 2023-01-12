@@ -20,10 +20,18 @@
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"
 		p:validationMessageSource-ref="messageSource" />
-
+	
 	<bean id="IRVR"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
+		p:prefix="/WEB-INF/views/" 
+		p:suffix=".jsp" 
+	/><!-- Integer로 설정할 수 있는 가장 큰 값을 가지고 있음(항상 마지막) -->
+	
+	<bean id="BNVR" class="org.springframework.web.servlet.view.BeanNameViewResolver" 
+		p:order="1"
+	/>
+	
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 
 	<!-- Controller layer를 bean으로 등록하기 위한 필터링 설정 -->
 	<context:component-scan
@@ -54,5 +62,6 @@
 	<!-- 웬만하면 이거 쓰지 마셔요 -->
 <!-- <mvc:default-servlet-handler/> -->
 
+	<!-- 정적자원이 일괄 관리 되는 경우 활용. -->
 	<mvc:resources location="/resources/" mapping="/resources/**" cache-period="0" /> <!-- 캐시를 남기지 않아 매번 캐시 지울 필요가 없어요 -->
 </beans>

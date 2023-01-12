@@ -2,6 +2,7 @@ package kr.or.ddit.member.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.or.ddit.vo.MemberVO;
@@ -11,6 +12,7 @@ import kr.or.ddit.vo.PagingVO;
  * 회원 관리(CRUD)를 위한 Persistence Layer 
  *
  */
+@Mapper
 public interface MemberDAO {
 	public int selectTotalRecord(PagingVO<MemberVO> pagingVO);
 	

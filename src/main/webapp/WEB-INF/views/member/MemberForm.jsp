@@ -23,7 +23,7 @@
 				<th><spring:message code="member.memId" /></th>
 				<td>
 					<form:input path="memId" class="form-control" />
-					<form:errors path="memId" element="span" cssClass="text-danger"/>
+					<form:errors path="memId" element="span" cssClass="text-danger" />
 				</td>
 			</tr>
 			<tr>
@@ -44,7 +44,7 @@
 				<th><spring:message code="member.memImage" /></th>
 				<td>
 					<input type="file" name="memImage" accept="image/*"/>
-					<form:errors path="memName" element="span" cssClass="text-danger"/>
+					<form:errors path="memImage" element="span" cssClass="text-danger"/>
 				</td>
 			</tr>
 			<tr>

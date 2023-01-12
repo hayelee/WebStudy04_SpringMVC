@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<select id="selectTotalRecord" parameterType="PagingVO" resultType="int">
-		SELECT COUNT(*)
-		FROM PRODVIEW
-		<include refid="searchFrag" />
-	</select>

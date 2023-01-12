@@ -10,7 +10,7 @@
 		<java-version>1.8</java-version>
 		<com.fasterxml.jackson-version>2.14.1</com.fasterxml.jackson-version>
 		<org.apache.logging.log4j-version>2.19.0</org.apache.logging.log4j-version>
-		<or.springframework-version>4.3.25.RELEASE</or.springframework-version>
+		<org.springframework-version>4.3.25.RELEASE</org.springframework-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 	</properties>
 	<build>
@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${or.springframework-version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -44,9 +44,21 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${or.springframework-version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- Spring + DataBase + ORM -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<!-- mybatis spring 연동 모듈 - mapper scanner -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.7</version>
+		</dependency>
 
 		<!-- 암호화 지원 -->
 		<dependency>
@@ -99,7 +111,6 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.5.11</version>
 		</dependency>
-
 
 		<!-- commons 계열 -->
 		<dependency>
@@ -195,6 +206,11 @@
 			<version>4.13.2</version>
 			<scope>test</scope> <!-- 테스트할 때 사용 -->
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
