@@ -66,41 +66,7 @@ public class PagingVO<T> {
 		startPage = endPage - (blockSize - 1);
 	}
 	
-	//jsp에서 페이지 번호 하드코딩 하지 않기 위해
-	private final String APATTERN = "<a class='paging' href='#' data-page='%d'>%s</a>";
-	
-	public String getPagingHTML() {
-		StringBuffer html = new StringBuffer();
-		
-		//이전을 눌렀을때 어디로 이동할지 결정
-		if(startPage > 1) {
-			html.append(
-				String.format(APATTERN, startPage-blockSize, "이전")
-			);
-		}
-		
-		//다음으로 이동하기 위한 for문
-		endPage = endPage > totalPage ? totalPage : endPage;
-		for(int page=startPage; page<=endPage; page++) {
-			if(page==currentPage) {
-				html.append(
-					"<a href='#'>"+page+"</a>"
-				);
-			}else {
-				html.append(
-					String.format(APATTERN, page, page+"")
-				);
-				
-			}
-		}
-		
-		//다음을 눌렀을때 어디로 이동할지 결정
-		if(endPage<totalPage) {
-			html.append(
-				String.format(APATTERN, endPage+1, "다음")
-			);
-		}
-		
-		return html.toString();
+	public int getEndPage() {
+		return endPage > totalPage ? totalPage : endPage;
 	}
 }

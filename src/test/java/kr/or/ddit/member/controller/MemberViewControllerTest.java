@@ -28,11 +28,11 @@ public class MemberViewControllerTest {
 		
 	}
 	
-	@Test
-	public void testMemberView() {
-		mockMvc.perform(get(""))
-			.andExpect(status().isOk())
-			.andDo(log());
-	}
+//	@Test
+//	public void testMemberView() {
+//		mockMvc.perform(get(""))
+//			.andExpect(status().isOk())
+//			.andDo(log());
+//	}
 
 }

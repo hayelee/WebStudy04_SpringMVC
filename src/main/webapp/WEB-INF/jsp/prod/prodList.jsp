@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.ddit.or.kr/class305" prefix="ui"%>
 <%-- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> --%>
 <%-- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %> --%>
 <!DOCTYPE html>
@@ -24,33 +25,11 @@
       </tr>
    </thead>
    <tbody id="listBody">
-<%--       <c:set var="prodList" value="${pagingVO.dataList }"/> --%>
-<%--       <c:choose> --%>
-<%--          <c:when test="${not empty prodList }"> --%>
-<%--             <c:forEach items="${prodList }" var="prod"> --%>
-<!--                <tr> -->
-<%--                   <td>${prod.rnum }</td> --%>
-<%--                   <td>${prod.lprodNm }</td> --%>
-<%--                   <td>${prod.prodName }</td> --%>
-<%--                   <td>${prod.buyer.buyerName }</td> --%>
-<%--                   <td>${prod.prodCost }</td> --%>
-<%--                   <td>${prod.prodPrice }</td> --%>
-<%--                   <td>${prod.memCount }</td> --%>
-<!--                </tr> -->
-<%--             </c:forEach> --%>
-<%--          </c:when> --%>
-<%--          <c:otherwise> --%>
-<!--             <tr> -->
-<!--                <td colspan="7">조건에 맞는 상품 없음.</td> -->
-<!--             </tr> -->
-<%--          </c:otherwise> --%>
-<%--       </c:choose> --%>
 	</tbody>
 	<tfoot>
 		<tr>
         	<td colspan="7">
 	            <div class="pagingArea">
-<%-- 	            	${pagingVO.pagingHTML } --%>
 	            </div>
 	            <div id="searchUI">
 	            	<select name="prodLgu">
@@ -151,7 +130,7 @@
 					trTags.push(tr);
 				}
 				listBody.html(trTags);
-				pagingArea.html(pagingVO.pagingHTML);
+				pagingArea.html(resp.pagingHTML); //pagingVO 안에 paginghtml이 없어서 사용 못해
 			},
 			error : function(jqXHR, status, error) {
 				console.log(jqXHR);
@@ -172,8 +151,6 @@
 	   });
 	   searchForm.submit();
 	});
-	
-
 </script>   
 <jsp:include page="/includee/postScript.jsp" />
 </body>

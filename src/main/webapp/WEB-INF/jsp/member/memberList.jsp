@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://www.ddit.or.kr/class305" prefix="ui" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +57,7 @@
 	<tfoot>
 		<tr>
 			<td colspan="7">
-				${pagingVO.pagingHTML }
+				<ui:pagination pagingVO="${pagingVO }" type="bootstrap"/>
 				<div id="searchUI">
 					<select name="searchType">
 						<option value>전체</option>

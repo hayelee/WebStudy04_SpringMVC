@@ -61,17 +61,22 @@ public class ProdServiceImpl implements ProdService {
 		return prod;
 	}
 
-	@Override
-	public List<ProdVO> retrieveProdList(PagingVO<ProdVO> pagingVO) {
-		int totalRecord = prodDAO.selectTotalRecord(pagingVO);
-		pagingVO.setTotalRecord(totalRecord);
-		List<ProdVO> prodList = prodDAO.selectProdList(pagingVO);
-		pagingVO.setDataList(prodList);
-		return prodList;
-	}
+	  @Override
+	   public List<ProdVO> retrieveProdList(PagingVO<ProdVO> pagingVO) { //CALL BY REFERENCE
+	      pagingVO.setTotalRecord(prodDAO.selectTotalRecord(pagingVO));
+
+	      List<ProdVO> ProdList = prodDAO.selectProdList(pagingVO);
+	      pagingVO.setDataList(ProdList);
+//	      log.info("ProdList : {}",ProdList);
+	      ProdList.stream()
+	      .forEach(System.out::println); // 메소드 레퍼런스 구조
+		return ProdList;
+
+	   }
+
 
 	@Inject
-	private SqlSessionFactory SqlSessionFactory;
+	private SqlSessionFactory SqlSessionFactory; // 문제점2 dao가 써야할 걸 service가 사용하는 비정상적인 의존관계 
 	@Override
 	public ServiceResult createProd(ProdVO prod) {
 //		session open
@@ -82,10 +87,11 @@ public class ProdServiceImpl implements ProdService {
 			int rowcnt = prodDAO.insertProd(prod, sqlSession); //이진데이터
 			
 			processProdImage(prod); //이미지 저장 
+			
 			sqlSession.commit();
 			
 			return rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
-		}
+		} // 문제점1 중복발생
 	}
 
 	@Override
