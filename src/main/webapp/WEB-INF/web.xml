@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
-	<display-name>WebStudy04_SpringMVC</display-name>
+	<display-name>WebStudy06_SpringSecurity</display-name>
 	<welcome-file-list>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
@@ -37,15 +37,6 @@
 	</filter-mapping>
 
 	<filter>
-		<filter-name>GeneratePrincipalFilter</filter-name>
-		<filter-class>kr.or.ddit.auth.GeneratePrincipalFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>GeneratePrincipalFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<filter>
 		<filter-name>MultipartFilter</filter-name>
 		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
 	</filter>
@@ -53,9 +44,18 @@
 		<filter-name>MultipartFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- 6.프록시 필터 추가 -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
-
-	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
+	<!-- The front controller of this Spring Web application, responsible for 
+		handling all application requests -->
 	<!-- Spring MVC 프로그래밍 모델이 동작하기 위한 하위 컨테이너 생성 -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
@@ -66,7 +66,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		<!-- Part API를 이용해 multipart 요청을 파싱할 수 있도록 함. -->
-	<!-- Servlet spec 3.x 방식의 MultipartFilter 를 활용할 수 있도록함. -->
+		<!-- Servlet spec 3.x 방식의 MultipartFilter 를 활용할 수 있도록함. -->
 		<multipart-config></multipart-config>
 	</servlet>
 

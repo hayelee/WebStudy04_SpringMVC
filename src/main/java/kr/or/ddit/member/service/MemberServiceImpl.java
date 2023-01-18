@@ -3,6 +3,7 @@ package kr.or.ddit.member.service;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,8 +23,8 @@ public class MemberServiceImpl implements MemberService {
 	//dao의존관계 형성 -> 결합력이 최상으로 발생
 	@Inject
 	private MemberDAO memberDAO;
-	@Inject
-	private AuthenticateService authService;
+	@Resource(name="authenticationManager")
+	private AuthenticationManager authenticationManager;
 	@Inject //필요하면 resource를 대신 쓸 수 있다는 뜻
 	private PasswordEncoder encoder;
 	
@@ -73,7 +74,7 @@ public class MemberServiceImpl implements MemberService {
 		inputData.setMemId(member.getMemId());
 		inputData.setMemPass(member.getMemPass());
 		
-		ServiceResult result = authService.authenticate(inputData);
+		ServiceResult result = aythenticationManager.authenticate(inputData);
 		if(ServiceResult.OK.equals(result)) {
 			int rowcnt = memberDAO.updateMember(member);
 			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
